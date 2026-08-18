@@ -8,15 +8,15 @@ public class multiple_rules {
 		Scanner scanner=new Scanner(System.in);
 		int m=scanner.nextInt();
 		int n=scanner.nextInt();
-		String Rule=scanner.next();
+		StringBuilder Rule=new StringBuilder(scanner.next()).reverse();
 		StringBuilder Word=new StringBuilder(scanner.next());
 		for(int i=0;i<m;i++) {
 			if(Rule.charAt(i)=='R') {
 				Word.reverse();
 			}
 			else if(Rule.charAt(i)=='L') {
-				Word.append(Word.charAt(0));
-				Word.deleteCharAt(0);
+				Word.insert(0,Word.charAt(n-1));
+				Word.deleteCharAt(n);
 			}
 			else if(Rule.charAt(i)=='S'){
 				if(n%2==0) {
