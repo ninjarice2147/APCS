@@ -37,12 +37,12 @@ public class comet_impact {
 			int yBorderAbove=Math.max(0,m_l[i][0]-half);
 			int yBorderUnder=Math.min(oy-1,m_l[i][0]+half);
 			int xBorderRight=Math.min(ox-1,m_l[i][1]+half);
-			int xBorderLeft=Math.max(0,m_l[i][1-half]);
+			int xBorderLeft=Math.max(0,m_l[i][1]-half);
 			int checker=0;
 			//一次隕石
 			//checker=0目前沒有恐龍,=1有過恐龍,=2全部沒有恐龍
-			for(int j=yBorderAbove;j<yBorderUnder;j++) {
-				for(int p=xBorderLeft;p<xBorderRight;p++) {
+			for(int j=yBorderAbove;j<=yBorderUnder;j++) {
+				for(int p=xBorderLeft;p<=xBorderRight;p++) {
 					if(m_d[j][p]>0) {
 						m_d[j][p]=-1;
 						checker=1;
@@ -50,11 +50,10 @@ public class comet_impact {
 					else if(checker==2) {
 						map[j][p]-=m_l[i][3];
 					}
-					if(j==yBorderUnder-1&&p==xBorderRight-1&&checker==0) {
-						j=yBorderAbove;
-						p=xBorderLeft;
-						checker=2;
-					}
+				}
+				if(j==yBorderUnder&&checker==0) {
+					j=yBorderAbove-1;
+					checker=2;
 				}
 			}	
 			
